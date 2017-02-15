@@ -6,7 +6,6 @@ public class Sudoku {
 	
 	private byte[][] grid = new byte[9][9];
 	
-	
 	public void setValue(byte i, int line, int column) {
 		this.grid[line][column] = i;
 	}

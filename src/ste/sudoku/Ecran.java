@@ -22,7 +22,7 @@ public class Ecran {
 				}
 			}
 			sb.append("|").append(System.lineSeparator());
-			if(l>0 && (l+1)%3==0){
+			if((l+1)%3==0){
 				sb.append("+-----------------------+").append(System.lineSeparator());
 			}
 		}

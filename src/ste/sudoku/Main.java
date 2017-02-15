@@ -23,20 +23,25 @@ public class Main {
 		System.out.println("==============================");
 	}
 
-	public static void scenario3() {
-		System.out.println("Main.scenario3()");
-		System.out.println();
-		Sudoku sudo1 = new Sudoku();
-		sudo1.setValue((byte) 1,0,0);
-		sudo1.setValue((byte) 2,1,1);
-		sudo1.setValue((byte) 3,2,2);
-		sudo1.setValue((byte) 4,3,3);
-		sudo1.setValue((byte) 5,4,4);
-		sudo1.setValue((byte) 6,5,5);
-		System.out.println(sudo1);
-	}
 
+
+	public static void scenario1() {
+		System.out.println("Main.scenario1()");
+		System.out.println();
+		Sudoku sudo = new Sudoku();
+		Ecran ecran = new Ecran();
+		sudo.setValue((byte) 1,0,0);
+		sudo.setValue((byte) 2,1,1);
+		sudo.setValue((byte) 3,2,2);
+		sudo.setValue((byte) 4,3,3);
+		sudo.setValue((byte) 5,4,4);
+		sudo.setValue((byte) 6,5,5);
+		ecran.afficheTitre();
+		ecran.afficheSudoku(sudo);
+	}
+	
 	public static void scenario2() {
+		
 		System.out.println("Main.scenario2()");
 		System.out.println();
 		Sudoku sudo1 = new Sudoku();
@@ -78,19 +83,17 @@ public class Main {
 		System.out.println("sudo1 != null : "+ !sudo1.equals(null));
 	}
 
-	public static void scenario1() {
-		System.out.println("Main.scenario1()");
+	public static void scenario3() {
+		System.out.println("Main.scenario3()");
 		System.out.println();
-		Sudoku sudo = new Sudoku();
-		Ecran ecran = new Ecran();
-		sudo.setValue((byte) 1,0,0);
-		sudo.setValue((byte) 2,1,1);
-		sudo.setValue((byte) 3,2,2);
-		sudo.setValue((byte) 4,3,3);
-		sudo.setValue((byte) 5,4,4);
-		sudo.setValue((byte) 6,5,5);
-		ecran.afficheTitre();
-		ecran.afficheSudoku(sudo);
+		Sudoku sudo1 = new Sudoku();
+		sudo1.setValue((byte) 1,0,0);
+		sudo1.setValue((byte) 2,1,1);
+		sudo1.setValue((byte) 3,2,2);
+		sudo1.setValue((byte) 4,3,3);
+		sudo1.setValue((byte) 5,4,4);
+		sudo1.setValue((byte) 6,5,5);
+		System.out.println(sudo1);
 	}
 
 }
