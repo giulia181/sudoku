@@ -2,7 +2,9 @@ package ste.sudoku;
 
 
 public class Ecran {
-
+	/**
+	 * Test
+	 */
 	public void afficheTitre() {
 		System.out.println("SUDOKU");
 		System.out.println("======");
