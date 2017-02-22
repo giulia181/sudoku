@@ -1,32 +1,16 @@
 package ste.sudoku.version3;
 
-import java.util.Arrays;
+import ste.sudoku.heritage.AbstractSudoku;
 
-import ste.sudoku.interfaces.Sudoku;
-
-public class SudokuV3 implements Sudoku {
+public class SudokuV3 extends AbstractSudoku {
 	
-	private byte[][] grid = new byte[21][21];	
-
-	@Override
-	public void setValue(byte val, int line, int column) {
-		if (isValidPosition(line, column)) {
-			grid[line][column] = val;
-		}
-
+	public SudokuV3() {
+		super(21, 21, new byte[] { 1, 2, 3, 4,5,6,7,8,9 });
+		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public byte getValue(int line, int column) {
-		if (isValidPosition(line, column)) {
-			return grid[line][column];
-		} else {
-			return -1;
-		}
-	}
-
-	private boolean isValidPosition(int line, int column) {
-		boolean isValid = true;
+	public boolean isValidPosition(int line, int column) {
+		boolean isValid = super.isValidPosition(line, column); 
 		if(column>8 && column<12){
 			isValid = !(line<6 || line>14);
 		}else if(line>8 && line<12){
@@ -36,28 +20,5 @@ public class SudokuV3 implements Sudoku {
 		return isValid;
 	}
 
-	@Override
-	public boolean equals(Object o){
-		
-		boolean equals = this==o;
-		
-		if(!equals && o!=null && o.getClass()==this.getClass() 
-				&& Arrays.deepEquals(this.grid, ((SudokuV3)o).grid)){
-			equals=true;
-		}
-		
-		return equals;
-	}
-	
-	@Override
-	public int hashCode(){
-		return Arrays.deepHashCode(grid);
-		
-	}
-	
-	@Override 
-	public String toString(){
-		return "Sudoku : grid = "+Arrays.deepToString(grid);
-	}
 	
 }
