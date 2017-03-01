@@ -5,9 +5,7 @@ import ste.sudoku.exceptions.OutOfSudokuException;
 
 public interface Sudoku {
 
-	public void setValue(byte i, int line, int column) throws OutOfSudokuException, InvalidSudokuValueException;
-
-	public byte getValue(int line, int column) throws OutOfSudokuException;
+public Cell getCell(int line, int column) throws OutOfSudokuException;
 	
 	public int getLineSize();
 
@@ -15,7 +13,7 @@ public interface Sudoku {
 
 	public boolean isValidPosition(int line, int column);
 
-	public boolean isValidValue(byte val);
+	public SudokuValue[] getValidValue();
 	
-	public byte[] getValidValues();
+	public void setGrid (Cell[][] grid);
 }

@@ -3,15 +3,16 @@ package ste.sudoku.heritage;
 import ste.sudoku.exceptions.OutOfSudokuException;
 import ste.sudoku.interfaces.Ecran;
 import ste.sudoku.interfaces.Sudoku;
+import ste.sudoku.interfaces.SudokuValue;
 
 
 
 public abstract class AbstractEcran implements Ecran {
 
-	private final String format;
-	private final String titre;
-	private final String line;
-	private final int nbValue;
+	private String format;
+	private String titre;
+	private String line;
+	private int nbValue;
 	
 	public AbstractEcran(String format, String titre,int nbValue) {
 		super();
@@ -34,20 +35,21 @@ public abstract class AbstractEcran implements Ecran {
 	@Override
 	public void afficheSudoku(Sudoku sudo) {
 
-		Byte[] valueTab = new Byte[this.nbValue];
+		String[] valueTab = new String[this.nbValue];
 		int pos = 0;
 		try {
 			for (int lig = 0; lig < sudo.getLineSize(); lig++) {
 				for (int col = 0; col < sudo.getColumnSize(); col++) {
 					if(sudo.isValidPosition(lig, col)){
-						valueTab[pos++] = sudo.getValue(lig, col);
+						SudokuValue v = sudo.getCell(lig, col).getValue();
+						valueTab[pos++] = v==null ? "." : v.toString();
 					}
 				}
 			}
-			System.out.println(String.format(format, (Object[])valueTab));
+		System.out.println(String.format(format, (Object[])valueTab));
 		} catch (OutOfSudokuException e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 
 	

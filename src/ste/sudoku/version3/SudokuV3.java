@@ -1,12 +1,12 @@
 package ste.sudoku.version3;
 
+import ste.sudoku.cellules.SudokuValue1_9;
 import ste.sudoku.heritage.AbstractSudoku;
 
 public class SudokuV3 extends AbstractSudoku {
 	
 	public SudokuV3() {
-		super(21, 21, new byte[] { 1, 2, 3, 4,5,6,7,8,9 });
-		// TODO Auto-generated constructor stub
+		super(21, 21, SudokuValue1_9.values());
 	}
 
 	public boolean isValidPosition(int line, int column) {

@@ -2,38 +2,27 @@ package ste.sudoku.heritage;
 
 import java.util.Arrays;
 
-import ste.sudoku.exceptions.InvalidSudokuValueException;
 import ste.sudoku.exceptions.OutOfSudokuException;
+import ste.sudoku.interfaces.Cell;
 import ste.sudoku.interfaces.Sudoku;
+import ste.sudoku.interfaces.SudokuValue;
 
 public abstract class AbstractSudoku implements Sudoku {
 
-	private byte[][] grid;
-	private byte[] tabValid;
+	private Cell[][] grid;
+	private SudokuValue[] tabValid;
+	private int nbLines;
+	private int nbCols;
 	
-	public AbstractSudoku (int line, int column, byte[] validValue){
-		this.grid=new byte[line][column];
+	public AbstractSudoku (int line, int column,SudokuValue[] validValue){
 		this.tabValid=validValue;
+		this.nbLines=line;
+		this.nbCols=column;
 	}
-	@Override
-	public void setValue(byte val, int line, int column)
-			throws OutOfSudokuException, InvalidSudokuValueException {
-		if (isValidPosition(line, column)) {			
-			if (!isValidValue(val)) {
-				throw new InvalidSudokuValueException(String.format(
-						"Valeur non valid : %s", val));
-			}
-			grid[line][column] = val;
-		} else {
-			throw new OutOfSudokuException(String.format(
-					"Pas de cellule en position ligne = %s colonne = %s", line, column));
-		}
-
-
-	}
+	
 
 	@Override
-	public byte getValue(int line, int column) throws OutOfSudokuException {
+	public Cell getCell(int line, int column) throws OutOfSudokuException {
 		if (isValidPosition(line, column)) {
 			return grid[line][column];
 		} else {
@@ -43,13 +32,20 @@ public abstract class AbstractSudoku implements Sudoku {
 	}
 
 	@Override
+	public void setGrid(Cell[][] grid) {
+		this.grid=grid;
+		
+	}
+
+
+	@Override
 	public int getLineSize() {
-		return grid.length;
+		return nbLines;
 	}
 
 	@Override
 	public int getColumnSize() {
-		return grid[0].length;
+		return nbCols;
 	}
 
 	@Override
@@ -59,19 +55,9 @@ public abstract class AbstractSudoku implements Sudoku {
 	}
 
 	@Override
-	public byte[] getValidValues() {
+	public SudokuValue[] getValidValue() {
+//		Encapsulation
 		return Arrays.copyOf(tabValid, tabValid.length);
-	}
-	
-	@Override
-	public boolean isValidValue(byte val) {
-		boolean valid = false;
-		int pos = 0;
-		while (pos < tabValid.length && !valid) {
-			valid = val == tabValid[pos];
-			pos++;
-		}
-		return valid;
 	}
 	
 	@Override
